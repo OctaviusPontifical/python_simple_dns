@@ -1,0 +1,10 @@
+[Unit]
+Description=Simple dns server
+After=multi-user.target
+[Service]
+WorkingDirectory=/opt/dns_server
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /opt/dns_server/core.py
+[Install]
+WantedBy=multi-user.target
