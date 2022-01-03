@@ -2,7 +2,7 @@ import logging.config
 import configparser
 import os
 
-CONFIG_FILE_PART =  '/config/config.ini'
+CONFIG_FILE_PART =  'config/config.ini'
 def get_param(name):
     conf  = os.environ.get(name)
     if conf:
