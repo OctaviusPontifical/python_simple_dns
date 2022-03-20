@@ -22,6 +22,8 @@ def server_thread(sock,request,addres):
 
 
 if __name__ == '__main__':
+    if int(setting.get_param("STATISTIC")):
+        Statistic.init()
     Domain.init()
     start_new_thread(Cache.cache_cleaner,())
     server()

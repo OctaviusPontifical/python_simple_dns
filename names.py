@@ -58,17 +58,18 @@ class Domain:
     @classmethod
     def get_ip(self,message, sours):
         domain,id,byte=request_parser(message)
-        record_statistic(sours[0],domain)
         cache = Cache.get_ip_from_cache(domain,id)
         if cache:
             return binascii.unhexlify(cache)
         elif domain in self.domain_list:
             respons = respons_creater(self.domain_list[domain],id,byte)
             Cache.add_to_cache(domain,respons)
+            Statistic.record_statistic(sours[0], domain)
             return binascii.unhexlify(respons)
         else :
             respons = client.send_request(message)
             Cache.add_to_cache(domain,binascii.hexlify(respons).decode("utf-8"))
+            Statistic.record_statistic(sours[0], domain)
             return respons
 
 
